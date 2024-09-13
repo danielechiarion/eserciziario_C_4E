@@ -18,7 +18,7 @@ void main(){
 
         /* calcolo rapporto */
         if(a<b){
-            if(b==0){ //se il divisore è uguale a 0 non proseguo con il ciclo in quanto la divisione è impossibile
+            if(b==0){
                 printf("La divisione e' impossibile");
                 break;
             }
