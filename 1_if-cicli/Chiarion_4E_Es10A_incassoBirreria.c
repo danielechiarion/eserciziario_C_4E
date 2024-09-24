@@ -51,8 +51,8 @@ int main(int argc, char *argv[])
     int numBevande = 0, numRistorazione = 0;
     double sommaBevande = 0, sommaRistorazione = 0;
     double mediaBevande, mediaRistorazione;
-    /* dichiarazione costanti */
-    #define parolaChiusura "chiudi"
+/* dichiarazione costanti */
+#define PAROLACHIUSURA "chiudi"
 
     do
     {
@@ -61,10 +61,9 @@ int main(int argc, char *argv[])
 
         /* chiedo all'utente se desidera
         concludere l'inserimento degli articoli di cassa */
-        printf("Desideri chiudere la cassa? Digita 'chiudi' senza spazi per confermare\n");
-        getchar();
+        printf("Desideri chiudere la cassa? Digita 'chiudi' senza spazi per confermare: ");
         scanf("%s", inputChiusura);
-    } while (strcmp(inputChiusura, parolaChiusura) != 0); // chiude la cassa solo se le due stringhe sono uguali
+    } while (strcmp(inputChiusura, PAROLACHIUSURA) != 0); // chiude la cassa solo se le due stringhe sono uguali
 
     /* calcolo medie */
     mediaBevande = sommaBevande / numBevande;
@@ -72,7 +71,7 @@ int main(int argc, char *argv[])
 
     /* output dei risultati */
     printf("\n\nLa media degli incassi delle bevande e' %.2f€", mediaBevande);
-    printf("\n\nLa media degli incassi della ristorazione e' %.2f€", mediaRistorazione);
+    printf("\nLa media degli incassi della ristorazione e' %.2f€", mediaRistorazione);
     if (numBevande > numRistorazione)
         printf("\nSono state vendute piu' bevande (%d consumazioni)", numBevande);
     else if (numBevande == numRistorazione)
