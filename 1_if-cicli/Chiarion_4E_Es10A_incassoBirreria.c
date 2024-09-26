@@ -65,13 +65,24 @@ int main(int argc, char *argv[])
         scanf("%s", inputChiusura);
     } while (strcmp(inputChiusura, PAROLACHIUSURA) != 0); // chiude la cassa solo se le due stringhe sono uguali
 
-    /* calcolo medie */
-    mediaBevande = sommaBevande / numBevande;
-    mediaRistorazione = sommaRistorazione / numRistorazione;
+    /* calcolo medie 
+    e output dei risultati */
+    if(numBevande>0){
+        mediaBevande = sommaBevande / numBevande;
+        printf("\n\nLa media degli incassi delle bevande e' %.2f€", mediaBevande);
+    }
+    else{
+        printf("\n\nNon e' possibile effettuare la media. 0 Bevande vendute");
+    }
 
-    /* output dei risultati */
-    printf("\n\nLa media degli incassi delle bevande e' %.2f€", mediaBevande);
-    printf("\nLa media degli incassi della ristorazione e' %.2f€", mediaRistorazione);
+    if(numRistorazione>0){
+        mediaRistorazione = sommaRistorazione / numRistorazione;
+        printf("\nLa media degli incassi della ristorazione e' %.2f€", mediaRistorazione);
+    }
+    else{
+        printf("\nNon e' possibile effettuare la media. 0 Ristorazioni vendute");
+    }
+
     if (numBevande > numRistorazione)
         printf("\nSono state vendute piu' bevande (%d consumazioni)", numBevande);
     else if (numBevande == numRistorazione)

@@ -69,13 +69,15 @@ int main(int argc, char *argv[])
             printf("\nAlmeno uno dei numeri inseriti e' minore di 0");
             break;
         }
+
         if (!controlloOrdine(a, b, c))
         {
-            printf("Non e' stato rispettato l'ordine A<B<C");
-            break;
+            printf("terna non valida");
         }
-
-        verificaMaxMin(a, c, &max, &min); // se tutto va bene, verifico il massimo e il minimo
+        else
+        {
+            verificaMaxMin(a, c, &max, &min); // se tutto va bene, verifico il massimo e il minimo
+        }
     }
 
     /* una volta finito,
@@ -84,8 +86,8 @@ int main(int argc, char *argv[])
         printf("\n\nNon e' stata inserita nessuna terna valida");
     else
     {
-        printf("\nIl numero minimo e': %d", min);
-        printf("\n\nIl numero massimo e': %d", max);
+        printf("\n\nIl numero minimo e': %d", min);
+        printf("\nIl numero massimo e': %d", max);
     }
 
     return 0;
