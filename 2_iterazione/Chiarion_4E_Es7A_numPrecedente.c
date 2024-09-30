@@ -5,7 +5,7 @@ il numero precedente.  */
 
 int main(int argc, char *argv[]){
 	/* dichiarazione variabili */
-	int input, numSuccessivo;
+	int input, numPrecedente;
 	
 	/* input variabili */
 	do{
@@ -13,10 +13,10 @@ int main(int argc, char *argv[]){
 		scanf("%d", &input);
 	}while(input<=1);
 	
-	numSuccessivo = input+1; //imposto il numero successivo
+	numPrecedente = input-1; //imposto il numero successivo
 	
 	printf("\n\nIl numero successivo a %d e' %d: ", input, numSuccessivo);
     
-    return 0;
+	return 0;
 
 }
