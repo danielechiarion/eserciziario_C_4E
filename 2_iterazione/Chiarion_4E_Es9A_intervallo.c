@@ -15,9 +15,12 @@ int main(int argc, char *argv[]){
 		scanf("%d", &n2);
 		
 		if(n2<=n1){
-			printf("ERRORE! L'input deve essere N2>N1");
+			printf("\nERRORE! L'input deve essere N2>N1");
 		}
-	}while(n2<=n1);
+		if(n2<=0 || n1<=0){
+			printf("\nERRORE! Almeno uno dei numeri inseriti e' negativo o nullo");
+		}
+	}while(n2<=n1 || n1<=0);
 	
 	/* output risultati */
 	printf("\nI numeri compresi tra %d e %d sono: \n", n1, n2);
