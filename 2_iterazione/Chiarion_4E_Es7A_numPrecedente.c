@@ -3,20 +3,21 @@ il numero precedente.  */
 
 #include <stdio.h>
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
 	/* dichiarazione variabili */
 	int input, numPrecedente;
-	
+
 	/* input variabili */
-	do{
+	do
+	{
 		printf("Inserisci un numero maggiore di 1: ");
 		scanf("%d", &input);
-	}while(input<=1);
-	
-	numPrecedente = input-1; //imposto il numero successivo
-	
-	printf("\n\nIl numero successivo a %d e' %d: ", input, numSuccessivo);
-    
-	return 0;
+	} while (input <= 1);
 
+	numPrecedente = input - 1; // imposto il numero successivo
+
+	printf("\n\nIl numero precedente a %d e' %d: ", input, numPrecedente);
+
+	return 0;
 }
