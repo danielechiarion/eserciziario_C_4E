@@ -52,3 +52,7 @@ Mkfile.old
 dkms.conf
 
 .vscode
+
+# Documentation folders
+**/html/
+**/latex/
