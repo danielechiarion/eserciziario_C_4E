@@ -79,6 +79,16 @@ void visualizzaArray(int array[], int indexArray)
     }
 }
 
+/* funzione per visualizzare un array all'inverso */
+void visualizzaArrayInverso(int array[], int indexArray)
+{
+    printf("\n\nValori array INVERSO:\n");
+    for (int i = indexArray-1; i>=0; i--)
+    {
+        printf("%d\t", array[i]);
+    }
+}
+
 /* funzione per inserire un elemento in coda */
 void inserisciInCoda(int num, int array[], int *arrayIndex)
 {
@@ -127,12 +137,26 @@ void eliminaNumero(int posNumero, int array[], int *indexArray){
     (*indexArray)--; //modifco l'indice array
 }
 
+/* funzione che permette di trovare il valore massimo
+all'interno di un array */
+int trovaMassimo(int array[], int indexArray){
+    int max = 0;
+
+    for(int i=0;i<indexArray;i++){
+        if(array[i]>max){
+            max=array[i];
+        }
+    }
+
+    return max;
+}
+
 int main(int argc, char *argv[])
 {
     /* dichiarazione array e relativo indice */
     int array[SHRT_MAX];
     int indexArray = 0;
-    int scelta, input, risultato;
+    int scelta, input, input2, risultato;
 
     /* inserimento valori per
     la prima popolazione del vettore */
@@ -162,7 +186,43 @@ int main(int argc, char *argv[])
             }
             break;
         case 4:
+            input=inputNumPositivo(2); //input numero
+            risultato=ricercaNumero(input, array, indexArray); //ricerca numero
+            if(risultato<0){
+                printf("Numero non trovato"); 
+            }
+            else{
+                eliminaNumero(risultato, array, &indexArray);
+            }
+            break;
+        case 5:
+            input = inputNumPositivo(2);
+            risultato= ricercaNumero(input, array, indexArray);
+            if(risultato<0){
+                printf("Numero non trovato"); 
+            }
+            else{
+                printf("Numero presente nella posizione %d", risultato);
+            }
+            break; 
+        case 6:
+            input = inputNumPositivo(2);
+            do{
+                printf("Inserisci la posizione in cui vuoi mettere il numero: ");
+                scanf("%d", &input2);
+                if(input2<0 || input2>indexArray){
+                    printf("Indice al di fuori della dimensione dell'array\n");
+                }
+            }while(input2<0 || input2>indexArray);
+            array[input2]=input;
             break;    
+        case 7:
+            visualizzaArrayInverso(array, indexArray);
+            break;           
+        case 8:
+            risultato = trovaMassimo(array, indexArray);
+            printf("Il valore massimo dell'array e' %d", risultato);
+            break;
         default:
             printf("Fine programma");
         }
