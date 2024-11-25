@@ -11,78 +11,110 @@ il diagramma:
 int main(int argc, char *argv[])
 {
     /* dichiarazione variabili */
-    int pCorrente, pid1, pid2, pid3, pid4, pid5, pid6;
+    int pid1, pid2, pid3, pid4, pid5, pid6;
     int ppid1, ppid2, ppid3, ppid4, ppid5, ppid6;
 
-    /* prima creo il processo p2 da p1 */
     pid1 = getpid();
     ppid1 = getppid();
-    pCorrente = fork();
-    if (pCorrente == 0)
+    /* creo il primo fork per ottenere p2 */
+    int p1 = fork();
+    if (p1 == 0)
     {
         pid2 = getpid();
         ppid2 = getppid();
     }
-
-    /* creo poi il processo p3, copiando il pid */
-    if (pCorrente > 0)
+    else if (p1 > 0)
     {
-        pCorrente = fork();
-        if (pCorrente == 0)
+        /* creo il secondo fork per ottenere p3,
+        che è figlio di p2 */
+        int p2 = fork();
+        if (p2 == 0)
         {
             pid3 = getpid();
             ppid3 = getppid();
         }
     }
 
-    /* dal processo p2 creo il processo p4 */
+    /* se il pid è uguale a 2 genero p4 */
     if (getpid() == pid2)
     {
-        pCorrente = fork();
-        if (pCorrente == 0)
+        int p3 = fork();
+        if (p3 == 0)
         {
             pid4 = getpid();
             ppid4 = getppid();
         }
     }
 
-    /* dal processo p3 genera il genero prima
-    p5 e poi p6 */
-    if (getpid() == 3)
+    /* se il pid è uguale a p3 genero
+    prima p5 */
+    if (getpid() == pid3)
     {
-        pCorrente = fork();
-        if (pCorrente == 0)
+        int p4 = fork();
+        if (p4 == 0)
         {
             pid5 = getpid();
             ppid5 = getppid();
         }
-    }
-
-    if (getpid() == 3)
-    {
-        pCorrente = fork();
-        if (pCorrente == 0)
+        else if (p4 > 0)
         {
-            pid6 = getpid();
-            ppid6 = getppid();
+            /* se mi trovo nel processo padre p3 genero
+            anche il processo figlio p6 */
+            int p5 = fork();
+            if (p5 == 0)
+            {
+                pid6 = getpid();
+                ppid6 = getppid();
+            }
         }
     }
 
-    /* output dei risultati,
-    per ognuno scrivo padre e figlio */
+    /* restituisco i risultati */
+    int pidOutput, ppidOutput;
+    printf("\n\n");
     if (getpid() == pid1)
     {
-        printf("PID processo 1: %d", pid1);
-        printf("\n\nPID processo 2: %d", pid2);
-        printf("\nProcesso padre: %d", ppid2);
-        printf("\n\nPID processo 3: %d", pid3);
-        printf("\nProcesso padre: %d", ppid3);
-        printf("\n\nPID processo 4: %d", pid4);
-        printf("\nProcesso padre: %d", ppid4);
-        printf("\n\nPID processo 5: %d", pid5);
-        printf("\nProcesso padre: %d", ppid5);
-        printf("\n\nPID processo 6: %d", pid6);
-        printf("\nProcesso padre: %d", ppid6);
+        printf("PROCESSO PADRE");
+        pidOutput = pid1;
+        ppidOutput = ppid1;
     }
+    else if (getpid() == pid2)
+    {
+        printf("PROCESSO P2");
+        pidOutput = pid2;
+        ppidOutput = ppid2;
+    }
+    else if (getpid() == pid3)
+    {
+        printf("PROCESSO P3");
+        pidOutput = pid3;
+        ppidOutput = ppid3;
+    }
+    else if (getpid() == pid4)
+    {
+        printf("PROCESSO P4");
+        pidOutput = pid4;
+        ppidOutput = ppid4;
+    }
+    else if (getpid() == pid5)
+    {
+        printf("PROCESSO P5");
+        pidOutput = pid5;
+        ppidOutput = ppid5;
+    }
+    else if (getpid() == pid6)
+    {
+        printf("PROCESSO P6");
+        pidOutput = pid6;
+        ppidOutput = ppid6;
+    }
+    else
+    {
+        printf("Processo non identificato");
+    }
+
+    printf("\nIl pid del processo e': %d", pidOutput);
+    printf("\nIl pid del processo padre e': %d", ppidOutput);
+
     return 0;
 }
