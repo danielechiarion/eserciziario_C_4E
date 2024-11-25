@@ -20,4 +20,6 @@ int main(int argc, char *argv[])
     {
         printf("Errore di generazione del processo figlio");
     }
+
+    return 0;
 }
