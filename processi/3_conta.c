@@ -45,6 +45,8 @@ int main(int argc, char *argv[])
 
         exit(0);
     }
+
+    return 0;
 }
 
 /* durante la fase di esecuzione può essere eseguito prima
