@@ -42,6 +42,8 @@ int main(int argc, char *argv[])
         {
             printf("%d\t", i);
         }
+
+        exit(0);
     }
 }
 

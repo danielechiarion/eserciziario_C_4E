@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
     { // altrimenti si ha un processo figlio
         printf("\nSono il figlio con pid: %d", getpid());
         printf("\nIl pid di mio padre e': %d", getppid());
+        exit(0); // esco dal processo figlio
     }
     else
     {

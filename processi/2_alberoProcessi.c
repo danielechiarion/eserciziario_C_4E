@@ -74,47 +74,71 @@ int main(int argc, char *argv[])
     printf("\n\n");
     if (getpid() == pid1)
     {
-        printf("PROCESSO PADRE");
+        printf("\n\nPROCESSO PADRE");
         pidOutput = pid1;
         ppidOutput = ppid1;
     }
     else if (getpid() == pid2)
     {
-        printf("PROCESSO P2");
+        printf("\n\nPROCESSO P2");
         pidOutput = pid2;
         ppidOutput = ppid2;
     }
     else if (getpid() == pid3)
     {
-        printf("PROCESSO P3");
+        printf("\n\nPROCESSO P3");
         pidOutput = pid3;
         ppidOutput = ppid3;
     }
     else if (getpid() == pid4)
     {
-        printf("PROCESSO P4");
+        printf("\n\nPROCESSO P4");
         pidOutput = pid4;
         ppidOutput = ppid4;
     }
     else if (getpid() == pid5)
     {
-        printf("PROCESSO P5");
+        printf("\n\nPROCESSO P5");
         pidOutput = pid5;
         ppidOutput = ppid5;
     }
     else if (getpid() == pid6)
     {
-        printf("PROCESSO P6");
+        printf("\n\nPROCESSO P6");
         pidOutput = pid6;
         ppidOutput = ppid6;
     }
     else
     {
-        printf("Processo non identificato");
+        printf("\n\nProcesso non identificato");
+        exit(1);
     }
 
     printf("\nIl pid del processo e': %d", pidOutput);
     printf("\nIl pid del processo padre e': %d", ppidOutput);
+
+    /* chiudo tutti i processi creati,
+    selezionando singolarmente tutti i processi */
+    if (getpid() == pid2)
+    {
+        exit(0);
+    }
+    else if (getpid() == pid3)
+    {
+        exit(0);
+    }
+    else if (getpid() == pid4)
+    {
+        exit(0);
+    }
+    else if (getpid() == pid5)
+    {
+        exit(0);
+    }
+    else if (getpid() == pid6)
+    {
+        exit(0);
+    }
 
     return 0;
 }

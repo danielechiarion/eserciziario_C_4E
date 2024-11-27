@@ -21,13 +21,14 @@ int main(int argc, char *argv[])
     {
         printf("\n\nCiao sono Qui");
         printf("\nmio PID: %d\tPID di mio padre: %d", getpid(), getppid());
+        exit(0); // esco dal processo figlio
     }
     else if (p1 > 0)
     {
         /* dettagli del padre */
         printf("\n\nCiao, sono Paperino");
         printf("\nmio PID: %d\tPID di mio figlio: %d", getpid(), p1);
-        fflush(stdout); //svuoto il buffer
+        fflush(stdout); // svuoto il buffer per evitare ripetizioni
 
         /* genero il secondo figlio */
         p2 = fork();
@@ -35,6 +36,7 @@ int main(int argc, char *argv[])
         {
             printf("\n\nCiao sono Quo");
             printf("\nmio PID: %d\tPID di mio padre: %d", getpid(), getppid());
+            exit(0); // esco dal processo figlio
         }
         else if (p2 > 0)
         {
@@ -44,6 +46,7 @@ int main(int argc, char *argv[])
             {
                 printf("\n\nCiao sono Qua");
                 printf("\nmio PID: %d\tPID di mio padre: %d", getpid(), getppid());
+                exit(0); // esco dal processo figlio
             }
         }
     }
