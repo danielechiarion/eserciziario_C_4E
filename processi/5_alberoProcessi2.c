@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
                     else if (p7 > 0) // padre P5
                     {
                         printf("\nPADRE P5\tPID: %d\tPID figlio P7: %d\n", getpid(), p7);
-                        waitpid(p7, &p7, 0); // attendo la terminazione di P7
+                        while (wait(NULL) > 0); // aspetto che escano tutti i processi
                         exit(2);
                     }
                     else
@@ -72,8 +72,8 @@ int main(int argc, char *argv[])
                     else if (p6 > 0) // padre P3
                     {
                         printf("\nPADRE P3\tPID: %d\tPID figlio P6: %d\n", getpid(), p6);
-                        waitpid(p6, &p6, 0);
-                        waitpid(p5, &p5, 0);
+                        while (wait(NULL) > 0); //aspetto la terminazione dei figli
+                        exit(2);
                     }
                     else
                     {
@@ -84,9 +84,6 @@ int main(int argc, char *argv[])
                 {
                     printf("\nProcesso P5 non generato correttamente\n");
                 }
-
-                waitpid(p4, &p4, 0);
-                exit(2);
             }
             else
             {
@@ -96,15 +93,12 @@ int main(int argc, char *argv[])
         else if (p3 > 0) // padre P1
         {
             printf("\nPADRE P1\tPID: %d\tPID figlio P3: %d\n", getpid(), p3);
-            waitpid(p3, &p3, 0);
+            while (wait(NULL) > 0); // attendo la terminazione di tutti i figli
         }
         else
         {
             printf("\nProcesso P2 non generato correttamente\n");
         }
-
-        waitpid(p2, &p2, 0);
-        exit(2);
     }
     else
     {
