@@ -6,12 +6,12 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-void convertiStringaMaiuscolo(char stringa[])
+void convertiStringaMaiuscolo(char string[])
 {
     /* converto tutti i caratteri in maiuscolo */
-    for (int i = 0; i < strlen(stringa); i++)
+    for (int i = 0; i < strlen(string); i++)
     {
-        stringa[i] = toupper(stringa[i]);
+        string[i] = toupper(string[i]);
     }
 }
 
@@ -27,12 +27,14 @@ int main(int argc, char *argv[])
 
     /* dichiarazione variabili */
     int p;
+    char string[strlen(argv[1])];
+    strcpy(string, argv[1]);
 
     p = fork();
     if (p == 0) // processo figlio
     {
-        convertiStringaMaiuscolo(argv[1]);
-        printf("La stringa convertita in maiuscolo e': %s", argv[1]);
+        convertiStringaMaiuscolo(string);
+        printf("La stringa convertita in maiuscolo e': %s", string);
         exit(0);
     }
     else // processo padre
