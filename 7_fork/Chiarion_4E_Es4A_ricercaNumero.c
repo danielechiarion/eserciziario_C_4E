@@ -11,9 +11,12 @@ implementata attraverso un'apposita funzione di nome ricerca. */
 
 /* metodo che ricerca un numero
 all'interno di un array */
-int ricerca(int array[], int arraySize, int num){
-    for(int i=0; i<arraySize; i++){
-        if(array[i] == num){
+int ricerca(int array[], int arraySize, int num)
+{
+    for (int i = 0; i < arraySize; i++)
+    {
+        if (array[i] == num)
+        {
             return i;
         }
     }
@@ -21,12 +24,37 @@ int ricerca(int array[], int arraySize, int num){
     return -1;
 }
 
-int main(int argc, char *argv[]){
-    int p = fork(); //creo il processo figlio
-
-    if(p==0) //figlio
+int main(int argc, char *argv[])
+{
+    if (argc != 2)
     {
-        
+        printf("Numero di argomenti non valido\n");
+        exit(0);
+    }
+
+    /* dichiarazione variabili */
+    int p, posizione, numInput = atoi(argv[1]);
+    int array[] = {15, 8, 2, 3, 45, 78, 9, 65, 23};
+
+    p = fork(); // creo il processo figlio
+
+    if (p == 0) // figlio
+    {
+        posizione = ricerca(array, sizeof(array) / sizeof(array[0]), numInput);
+        if (posizione >= 0)
+        {
+            printf("Il numero %d si trova nella posizione %d dell'array\n", numInput, posizione);
+        }
+        else
+        {
+            printf("Il numero non e' stato trovato\n");
+        }
+
+        exit(2);
+    }
+    else // padre
+    {
+        wait(&p);
     }
 
     return 0;
