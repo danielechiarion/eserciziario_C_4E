@@ -25,9 +25,9 @@ int main(int argc, char *argv[])
     /* se trova sempre qualcosa
     da leggere lo scrive sullo
     schermo */
-    while (read(fd, buf, 1) > 0)
+    while (read(fd, buf, sizeof(buf)) > 0)
     {
-        write(1, buf, 1);
+        write(1, buf, sizeof(buf));
     }
 
     close(fd);
