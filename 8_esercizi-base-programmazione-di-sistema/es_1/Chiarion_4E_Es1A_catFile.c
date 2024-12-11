@@ -12,18 +12,21 @@ Consiglio: leggere un carratere per volta */
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[]){
-    if(argc!=2){
+int main(int argc, char *argv[])
+{
+    if (argc != 2)
+    {
         printf("Numero di argomenti non valido");
         exit(0);
     }
     char *buf;
 
     int fd = open(argv[1], O_RDONLY);
-    /* se trova sempre qualcosa 
+    /* se trova sempre qualcosa
     da leggere lo scrive sullo
     schermo */
-    while(read(fd, buf, 1)>0){
+    while (read(fd, buf, 1) > 0)
+    {
         write(1, buf, 1);
     }
 
