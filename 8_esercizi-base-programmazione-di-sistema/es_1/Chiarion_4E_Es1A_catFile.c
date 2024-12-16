@@ -22,12 +22,13 @@ int main(int argc, char *argv[])
     char *buf;
 
     int fd = open(argv[1], O_RDONLY);
+    int nRead;
     /* se trova sempre qualcosa
     da leggere lo scrive sullo
     schermo */
-    while (read(fd, buf, sizeof(buf)) > 0)
+    while (nRead =read(fd, buf, sizeof(buf)) > 0)
     {
-        write(1, buf, sizeof(buf));
+        write(1, buf, nRead); //se scrivo più di nRead vengono messi caratteri strani
     }
 
     close(fd);
