@@ -38,10 +38,10 @@ int main(int argc, char *argv[])
         {
             printf("\nP4: mio PID = %d mio padre P2 ha PID = %d\n", getpid(), getppid());
             /* faccio il conto alla rovescia a partire da n */
-            printf("P4: conto alla rovescia da %d:\t", n);
+            printf("P4: conto alla rovescia da %d:\n", n);
             for (int i = n; i >= 0; i--)
             {
-                printf("%d\t", i);
+                printf("P4: %d\n", i);
                 sleep(1);
             }
             printf("\n");
@@ -55,10 +55,10 @@ int main(int argc, char *argv[])
             {
                 printf("\nP5: mio PID = %d mio padre P2 ha PID = %d\n", getpid(), getppid());
                 /* faccio il conto progressivo da 0 a n */
-                printf("\nP5: conto progressivo fino a %d:\t", n);
+                printf("\nP5: conto progressivo fino a %d:\n", n);
                 for (int i = 0; i <= n; i++)
                 {
-                    printf("%d\t", i);
+                    printf("P5: %d\n", i);
                     sleep(1);
                 }
                 printf("\n");
