@@ -89,14 +89,16 @@ int main(int argc, char *argv[]){
     opportuno e conto le occorrenze del carattere */
     for(int i=1;i<argc-2;i++){
         fd = open(argv[i], O_RDONLY);
-        /* leggo carattere per carattere e controllo se 
-        sono uguali*/
-        while(read(fd, &buf, sizeof(buf))){
-            if(buf == charRicerca){
-                cont++;
+        if(fd>0){
+            /* leggo carattere per carattere e controllo se 
+            sono uguali*/
+            while(read(fd, &buf, sizeof(buf))){
+                if(buf == charRicerca){
+                    cont++;
+                }
             }
+            close(fd); //è importante chiudere sempre il file
         }
-        close(fd); //è importante chiudere sempre il file
     }
 
     /* concateno le stringhe per poter salvare
