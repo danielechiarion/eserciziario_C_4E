@@ -57,7 +57,6 @@ int main(int argc, char *argv[])
         printf("\nF1: mio PID=%d, mio padre P ha PID=%d\n", getpid(), getppid());
         int attesa = 2;
         sleep(attesa);
-        exit(attesa);
     }
     else if (f1 > 0) // padre P
     {
