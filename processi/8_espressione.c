@@ -47,9 +47,9 @@ int main(int argc, char *argv[])
         {
             printf("\nP: mio PID=%d, mio figlio F2 ha PID=%d\n", getpid(), f2);
             /* uso waitpid per esercitarmi con l'utilizzo della funzione*/
-            waitpid(f1, &status, 1);
+            waitpid(f1, &status, 0);
             somma += WEXITSTATUS(status);
-            waitpid(f2, &status, 2);
+            waitpid(f2, &status, 0);
             somma += WEXITSTATUS(status);
         }
         else
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
             printf("\nF2 non generato correttamente\n");
         }
 
-        printf("\nLa somma dei valori e': %d", somma);
+        printf("\n>P: La somma dei valori e': %d", somma);
     }
     else
     {
