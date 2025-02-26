@@ -33,7 +33,8 @@ int main(int argc, char *argv[])
     }
 
     /* il padre aspetta tutti i figli */
-    for(int i=0;i<argc-2;i++){
+    for (int i = 0; i < argc - 2; i++)
+    {
         wait(NULL);
     }
 
