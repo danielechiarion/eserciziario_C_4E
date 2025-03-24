@@ -8,9 +8,11 @@ cat costituzione.txt | more */
 #include <sys/types.h>
 #include <sys/wait.h>
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
     /* controllo se il numero di argomenti è valido */
-    if(argc != 2){
+    if (argc != 2)
+    {
         printf("Numero di argomenti non valido\n");
     }
 
@@ -22,28 +24,30 @@ int main(int argc, char *argv[]){
 
     /* creo un primo processo che mi faccia il comando cat */
     p1 = fork();
-    if(p1 == 0){
+    if (p1 == 0)
+    {
         /* redireziono lo standard output,
         duplicando il fd della pipe */
         close(1);
         dup(p1p2[1]);
         close(p1p2[1]);
-        close(p1p2[0]); //chiudo il fd della lettura
+        close(p1p2[0]); // chiudo il fd della lettura
 
         execl("/usr/bin/cat", "cat", argv[1], NULL);
         close(1);
         exit(0);
     }
-    
+
     /* creo un secondo processo per il comando more */
     p2 = fork();
-    if(p2 == 0){
+    if (p2 == 0)
+    {
         /* redireziono lo standard input,
         duplicando il fd della pipe */
         close(0);
         dup(p1p2[0]);
         close(p1p2[0]);
-        close(p1p2[1]); //chiudo il fd della scrittura
+        close(p1p2[1]); // chiudo il fd della scrittura
 
         execl("/usr/bin/more", "more", NULL);
         close(1);
@@ -54,7 +58,8 @@ int main(int argc, char *argv[]){
     close(p1p2[0]);
     close(p1p2[1]);
 
-    while(wait(NULL)>0);
+    while (wait(NULL) > 0)
+        ;
 
     return 0;
 }
