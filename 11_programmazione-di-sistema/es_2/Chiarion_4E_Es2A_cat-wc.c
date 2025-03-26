@@ -1,6 +1,6 @@
 /* Scrivere un programma concorrente che realizzi il seguente comando:
 
-cat file.txt | wc 
+cat file.txt | wc
 
 il processo p2 deve rimandare l'output di wc al padre, il quale lo scriverà
 su un file chiamato wc.txt
@@ -75,12 +75,14 @@ int main(int argc, char *argv[])
     /* leggo il l'output di p2 e lo scrivo su file */
     int fdFile = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0777);
     char buf;
-    while(read(p2p0[0], &buf, sizeof(buf))>0){
+    while (read(p2p0[0], &buf, sizeof(buf)) > 0)
+    {
         write(fdFile, &buf, sizeof(buf));
     }
-    close(p2p0[0]); //chiudo il file descriptor dell'input
+    close(fdFile);
+    close(p2p0[0]); // chiudo il file descriptor dell'input
 
-    wait(&p1); //aspetto che il processo p1 termini
+    wait(&p1); // aspetto che il processo p1 termini
 
     return 0;
 }
