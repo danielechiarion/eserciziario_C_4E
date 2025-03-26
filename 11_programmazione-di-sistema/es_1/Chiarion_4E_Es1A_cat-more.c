@@ -34,8 +34,7 @@ int main(int argc, char *argv[])
         close(p1p2[0]); // chiudo il fd della lettura
 
         execl("/usr/bin/cat", "cat", argv[1], NULL);
-        close(1);
-        exit(0);
+        return -1; // exec si prende il controllo del processo. L'unica cosa che possiamo fare è ritornare -1 una volta terminato
     }
 
     /* creo un secondo processo per il comando more */
@@ -50,8 +49,7 @@ int main(int argc, char *argv[])
         close(p1p2[1]); // chiudo il fd della scrittura
 
         execl("/usr/bin/more", "more", NULL);
-        close(1);
-        exit(0);
+        return -1;
     }
 
     /* chiudo i file descriptor della pipe */
