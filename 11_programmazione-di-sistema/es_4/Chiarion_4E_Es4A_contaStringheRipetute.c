@@ -42,8 +42,6 @@ int main(int argc, char *argv[])
     la comunicazione tra processi figli */
     int p1p2[2];
     int p2p0[2];
-    pipe(p1p2);
-    pipe(p2p0);
 
     printf("Cerca stringhe %s", argv[1]);
     while (1)
@@ -61,6 +59,8 @@ int main(int argc, char *argv[])
             break;
         }
 
+        pipe(p1p2);
+
         /* apro un processo figlio e
         conto il numero di occorrenze */
         pid = fork();
@@ -73,13 +73,15 @@ int main(int argc, char *argv[])
             dup(p1p2[1]);
             close(p1p2[1]);
 
-            execl("/usr/bin/grep", "grep", "-ow", stringaInput, argv[1], (char *)0);
+            execl("/usr/bin/grep", "grep", "-ow", stringaInput, argv[1], NULL);
             return -1;
         }
 
+        pipe(p2p0);
         /* nuovo processo per il wc */
         pid = fork();
-        if(pid==0){
+        if (pid == 0)
+        {
             /* redireziono lo standard output
             al fd della pipe verso P0 */
             close(p2p0[0]);
@@ -95,12 +97,16 @@ int main(int argc, char *argv[])
             close(p1p2[0]);
 
             execl("/usr/bin/wc", "wc", "-l", (char *)0);
-            return -1;  
+            return -1;
         }
 
         /* chiudo i file descriptor non utilizzati
         e leggo il numero di occorrenze trovate */
+        close(p1p2[0]);
+        close(p1p2[1]);
+        close(p2p0[1]);
         read(p2p0[0], inputOccorrenza, sizeof(inputOccorrenza));
+        close(p2p0[0]);
         occorrenzaStringa = atoi(inputOccorrenza);
         occorrenzeTotali += occorrenzaStringa;
         printf("\nLa stringa %s compare %d volte nel file", stringaInput, occorrenzaStringa);
