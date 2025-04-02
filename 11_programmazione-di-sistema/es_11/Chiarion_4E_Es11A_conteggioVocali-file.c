@@ -2,9 +2,9 @@
 Una volta effettuato il conteggio il programma principale deve mostrarlo a video.
 
 Note operative:
-P0 genera P1 il quale legge il contenuto del file usando il comando cat. 
-P2 legge da pipe il flusso di caratteri e per ogni carattere verifica se è una vocale, in caso positivo aggiorna il conteggio. 
-P2 invia a P0 il totale 
+P0 genera P1 il quale legge il contenuto del file usando il comando cat.
+P2 legge da pipe il flusso di caratteri e per ogni carattere verifica se è una vocale, in caso positivo aggiorna il conteggio.
+P2 invia a P0 il totale
 P0 stampa a video il totale.
 
 Esempio:
@@ -46,16 +46,18 @@ void close_pipe(int pipe[])
     close(pipe[1]);
 }
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
     /* verifico il numero di argomenti */
-    if(argc != 2){
+    if (argc != 2)
+    {
         printf("Numero di argomenti inseriti errato\n");
         exit(0);
     }
 
     /* dichiarazione variabili */
     int pid;
-    int contaVocali; 
+    int contaVocali;
     char contaStringa[10];
 
     /* creazione pipe */
@@ -63,7 +65,8 @@ int main(int argc, char *argv[]){
     pipe(p1p2);
 
     pid = fork();
-    if(pid == 0){
+    if (pid == 0)
+    {
         pipe_stdOut(p1p2);
 
         execl("/usr/bin/cat", "cat", argv[1], NULL);
@@ -73,7 +76,8 @@ int main(int argc, char *argv[]){
     pipe(p2p0);
 
     pid = fork();
-    if(pid ==0){
+    if (pid == 0)
+    {
         pipe_stdIn(p1p2);
         pipe_stdOut(p2p0);
 
@@ -82,8 +86,10 @@ int main(int argc, char *argv[]){
         char input;
 
         /* leggo finchè ci sono caratteri disponibili */
-        while(scanf("%c", &input)>0){
-            if((input >='a' && input <= 'z') || (input>='A' && input<='Z')){
+        while (scanf("%c", &input) > 0)
+        {
+            if (input == 'a' || input == 'e' || input == 'i' || input == 'o' || input == 'u')
+            {
                 contaVocali++;
             }
         }
