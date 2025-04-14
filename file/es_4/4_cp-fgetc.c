@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
         exit(2);
     }
 
-    while ((value = fgetc(fileInput)) != -1)
+    while ((value = fgetc(fileInput)) != -1) // -1 corrisponde a EOF (End Of File)
     {
         fputc(value, fileOutput);
     }
