@@ -23,12 +23,12 @@ int main(int argc, char *argv[])
         printf("\nErrore nell'apertura del file numeri.txt");
         exit(1);
     }
-    if (fileInput == NULL)
+    if (fileOutputPari == NULL)
     {
         printf("\nErrore nell'apertura del file pari.txt");
         exit(1);
     }
-    if (fileInput == NULL)
+    if (fileOutputDispari == NULL)
     {
         printf("\nErrore nell'apertura del file dispari.txt");
         exit(1);
