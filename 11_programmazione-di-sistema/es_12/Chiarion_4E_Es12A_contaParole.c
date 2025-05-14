@@ -93,6 +93,7 @@ int main(int argc, char *argv[])
         sprintf(strParole, "%d", cont);
         write(p2p0[1], strParole, sizeof(strParole));
         close(p2p0[1]);
+        
 
         exit(0);
     }
